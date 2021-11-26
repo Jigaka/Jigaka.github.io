@@ -1,0 +1,57 @@
+:root {
+  --bg-black-900: #000000;
+  --bg-black-100: #dddddd;
+  --bg-black-50: #eff0f4;
+  --text-black-900: #000000;
+  --text-black-700: #555555;
+  --text-black-600: #666666;
+  --text-black-300: #bbbbbb;
+  --outer-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;
+  --outer-shadow-0: 0 0 0 #d0d0d0, 0 0 0 #f8f8f8;
+  --inner-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
+  --inner-shadow-0: inset 0 0 0 #d0d0d0, inset 0 0 0 #f8f8f8;
+}
+
+*:not(i) {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+
+.policy-security,
+.app-bar {
+  width: 60%;
+  padding-top: 10px;
+  margin: auto;
+}
+
+.app-presentation .separator {
+  height: 1px;
+  width: 100%;
+  display: block;
+  background-color: var(--bg-black-100);
+}
+
+.policy-content {
+  text-align: justify;
+}
+
+.app-bar .app-name {
+  color: blue;
+}
+
+.policy-items h3 {
+  color: navy;
+}
+
+.app-presentation {
+  padding: 20px;
+}
+
+.app-bar .logo {
+  max-height: 50px;
+  float: right;
+}
+
+.app-presentation .app-name {
+  display: inline;
+}
