@@ -11,6 +11,7 @@ global style
   --bg-black-900: #000000;
   --bg-black-100: #dddddd;
   --bg-black-50: #eff0f4;
+  --bg-opacity: rgba(255, 255, 255, 0.5);
   --text-black-900: #000000;
   --text-black-700: #555555;
   --text-black-600: #666666;
@@ -30,7 +31,10 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   background-color: var(--bg-black-50);
-  /* overflow-y: hidden; */
+}
+
+body.stop-scrolling {
+  overflow-y: hidden;
 }
 
 *:not(i) {
@@ -842,7 +846,7 @@ about section
 .portfolio-section {
   padding: 80px 0 80px;
   min-height: 100vh;
-  display: none;
+  /* display: none; */
 }
 
 .portfolio-section .section-title {
@@ -857,6 +861,18 @@ about section
   margin-bottom: 20px;
 }
 
+.portfolio-section .no-data-portfolio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  animation: fadeInTop 0.5s;
+}
+
+.portfolio-section .no-data-portfolio h3 {
+  color: var(--skin-color);
+}
+
 .portfolio-section .filter-item {
   display: inline-block;
   margin: 0 5px 10px;
@@ -868,6 +884,15 @@ about section
   text-transform: capitalize;
   font-size: 16px;
   transition: all 0.3s ease;
+}
+
+.portfolio-section .portfolio-item.hide {
+  display: none;
+}
+
+.portfolio-section .portfolio-item.show {
+  display: block;
+  animation: fadeInTop 0.5s ease;
 }
 
 .portfolio-section .filter-item:hover:not(.active) {
@@ -946,14 +971,66 @@ about section
   width: 100%;
   height: 100%;
   z-index: 1000;
-  overflow-y: auto;
-  display: none;
+  overflow-y: scroll;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  /* display: none; */
 }
 
+.portfolio-popup .pp-loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1005;
+  background-color: var(--bg-opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.portfolio-popup .pp-loader.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.portfolio-popup .pp-loader div {
+  height: 40px;
+  width: 40px;
+  border: 3px solid var(--skin-color);
+  border-radius: 50%;
+  border-right: 3px solid transparent;
+  animation: spin 2s linear infinite;
+}
+
+.portfolio-popup.open {
+  visibility: visible;
+  opacity: 1;
+}
 .portfolio-popup .pp-details {
   max-width: 1350px;
   width: calc(85% + 30px);
   margin: auto;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.portfolio-popup .pp-details.active {
+  opacity: 1;
+}
+
+.portfolio-popup .pp-project-details h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-black-700);
+  margin: 0 0 15px;
+  text-transform: capitalize;
 }
 
 .portfolio-popup .pp-details-inner {
@@ -969,6 +1046,16 @@ about section
   color: var(--bg-black-900);
 }
 .portfolio-popup .pp-title p {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-black-600);
+  margin: 0 0 15px;
+  border-bottom: 1px solid var(--bg-black-100);
+}
+
+.portfolio-popup .pp-title p span {
+  font-weight: 400;
+  text-transform: capitalize;
 }
 
 .portfolio-popup .description {
@@ -976,9 +1063,37 @@ about section
   max-width: 65%;
   padding: 0 15px;
 }
+
+.portfolio-popup .description p {
+  font-size: 16px;
+  color: var(--text-black-600);
+  line-height: 26px;
+  margin: 0;
+}
+
 .portfolio-popup .info {
   flex: 0 0 35%;
   max-width: 35%;
+}
+
+.portfolio-popup .info ul li {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--text-black-600);
+  font-size: 16px;
+}
+
+.portfolio-popup .info ul li span {
+  font-weight: 400;
+}
+
+.portfolio-popup .info ul li a {
+  color: var(--skin-color);
+}
+
+.portfolio-popup .info ul li:last-child {
+  margin-bottom: 0;
 }
 
 .portfolio-popup .separator {
